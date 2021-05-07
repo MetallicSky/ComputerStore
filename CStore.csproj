@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>a9007180-308a-4e37-adab-8b1f055c8835</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Store.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Store.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Store.db-shm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

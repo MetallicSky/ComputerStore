@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewData["Title"] = "Главная страница";
+}
+
+<div class="col-4 store-sidebar">
+    <h4>Подбор по параметрам</h4>
+
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Эл. адрес</label>
+                <input type="email" class="form-control" id="inputEmail4">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Пароль</label>
+                <input type="password" class="form-control" id="inputPassword4">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Адрес</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="проспект, улица">
+        </div>
+        <div class="form-group">
+            <label for="inputAddress2">Адрес 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Квартира, студия или этаж">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputГород">Город</label>
+                <input type="text" class="form-control" id="inputГород">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputState">Область</label>
+                <select id="inputState" class="form-control">
+                    <option selected>Выбрать...</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputZip">Индекс</label>
+                <input type="text" class="form-control" id="inputZip">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                    Проверить меня
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Войти в систему</button>
+    </form>
+</div>
+
+<div class="col-8 store-content">
+    <div class="card col-12">
+        <div class="row">
+            <div class="col-4">
+                <img src="~/img/ram.png" class="product-img" alt="...">
+            </div>
+            <div class="col-8">
+                <div class="card-body">
+                    <h5 class="card-title">RAM name</h5>
+                    <p class="card-text">
+                        Type: DDR4 <br />
+                        Amount: 8GB <br />
+                        Manufactured by Razor<br />
+                        Price <span class="badge badge-secondary">7000 р</span>
+
+                    </p>
+                    <a href="#" class="btn btn-outline-secondary">Заказать</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card col-12">
+        <div class="row">
+            <div class="col-4">
+                <img src="~/img/cpu.png" class="product-img" alt="...">
+            </div>
+            <div class="col-8">
+                <div class="card-body">
+                    <h5 class="card-title">fx-8350</h5>
+                    <p class="card-text">
+                        Clock Speed: 1500 mg <br />
+                        Cores: 4 <br />
+                        Socket:  AM3+ <br />
+                        Manufactured by AMD<br />
+                        Price <span class="badge badge-secondary"> 9000 р</span>
+                    </p>
+                    <a href="#" class="btn btn-outline-secondary">Заказать</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card col-12">
+        <div class="row">
+            <div class="col-4">
+                <img src="~/img/bb.png" class="product-img" alt="...">
+            </div>
+            <div class="col-8">
+                <div class="card-body">
+                    <h5 class="card-title">Z11+</h5>
+                    <p class="card-text">
+                        Clock Speed: 1500 mg <br />
+                        Form Factor: MidiTower <br />
+                        Color:  Black <br />
+                        Manufactured by Zulman<br />
+                        Price <span class="badge badge-secondary">4500 р</span>
+                    </p>
+                    <a href="#" class="btn btn-outline-secondary">Заказать</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card col-12">
+        <div class="row">
+            <div class="col-4">
+                <img src="~/img/mb.png" class="product-img" alt="...">
+            </div>
+            <div class="col-8">
+                <div class="card-body">
+                    <h5 class="card-title">kr23pty</h5>
+                    <p class="card-text">
+                        Socket:  AM3+ <br />
+                        Form Factor: ATX <br />
+                        Chipset:  975 <br />
+                        Manufactured by Asus<br />
+                        Price <span class="badge badge-secondary">7500 р</span>
+                    </p>
+                    <a href="#" class="btn btn-outline-secondary">Заказать</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card col-12">
+        <div class="row">
+            <div class="col-4">
+                <img src="~/img/gpu.png" class="product-img" alt="...">
+            </div>
+            <div class="col-8">
+                <div class="card-body">
+                    <h5 class="card-title">GTX 780</h5>
+                    <p class="card-text">
+                        Memory Amount:  4 GB <br />
+                        ClockSpeed: 925 <br />
+                        Bus:  128 bit <br />
+                        GPU Manufacturer by NVIDIA <br />
+                        Manufactured by Asus<br />
+
+                        Price <span class="badge badge-secondary">12500 р</span>
+                    </p>
+                    <a href="#" class="btn btn-outline-secondary">Заказать</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
