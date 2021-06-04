@@ -1,0 +1,70 @@
+﻿@model CStore.Models.CPU
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Edit CPU";
+}
+
+<form class="col-8" asp-action="EditCPU" asp-controller="Admin" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="Name">Наименование</label><br />
+        <input name="name" class="form-control" id="qw" type="text" asp-for="Name" />
+        <span class="form-text" asp-validation-for="Name" />
+    </div>
+
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="ClockSpeed">Частота</label><br />
+        <input class="form-control" name="clockSpeed" id="qw" type="number" asp-for="ClockSpeed" />
+        <span class="form-text" asp-validation-for="ClockSpeed" />
+    </div>
+
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="Cores">Число ядер</label><br />
+        <input class="form-control" name="cores" id="qw" type="number" asp-for="Cores" />
+        <span class="form-text" asp-validation-for="Cores" />
+    </div>
+
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="Cost">Стоимость</label><br />
+        <input class="form-control" id="qw" type="number" asp-for="Cost" />
+        <span class="form-text" asp-validation-for="Cost" />
+    </div>
+
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="Socket">Сокет</label><br />
+        <input class="form-control" name="socket" id="qw" type="text" asp-for="Socket" />
+        <span class="form-text" asp-validation-for="Socket" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Manufacturer" class="form-label" for="qw">Производитель</label>
+        <select name="manufacturer" asp-for="Manufacturer" id="qw" class="form-control">
+            <option>@CPU.CPUChipManufacturer.AMD</option>
+            <option>@CPU.CPUChipManufacturer.Intel</option>
+        </select>
+    </div>
+    <input asp-for="Id" type="hidden" />
+    <div>
+        <button type="submit" class="btn btn-secondary">Изменить</button>
+    </div>
+    <input asp-for="Id" type="hidden" />
+</form>
+
+    <div class="col-4">
+        <h4>До редактирования</h4>
+        <h5 class="card-title">Name: @Model.Name</h5>
+        <p class="card-text">
+            Clock Speed: @Model.ClockSpeed mg <br />
+            Cores: @Model.Cores <br />
+            Socket:  @Model.Socket <br />
+            Manufactured by @Model.Manufacturer<br />
+            Price <span class="badge badge-secondary">@Model.Cost р</span>
+        </p>
+    </div>
+
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

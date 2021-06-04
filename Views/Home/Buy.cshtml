@@ -1,0 +1,50 @@
+﻿@model CStore.Models.Order
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Оформление заказа";
+}
+<h4 class="col-12" >Сделать заказ</h4>
+<form class="col-8" asp-action="Buy" asp-controller="Home" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+
+    <input type="hidden" asp-for="ProductId" value="@ViewBag.Id" />
+
+    <input type="hidden" asp-for="Category" value="@ViewBag.Category" />
+
+    <div class="mb-3">
+        <label for="ww" class="form-label" asp-for="ClientName">ФИО</label><br />
+        <input class="form-control" id="ww" type="text" asp-for="ClientName" />
+        <span class="form-text" asp-validation-for="ClientName" />
+    </div>
+    <div>
+
+    </div>
+    <div class="mb-3">
+        <label for="ww" class="form-label" asp-for="Adress">Адрес доставки</label><br />
+        <input class="form-control" id="ww" type="text" asp-for="Adress" />
+        <span class="form-text" asp-validation-for="Adress" />
+    </div>
+
+    <div class="mb-3">
+        <label for="ww" class="form-label" asp-for="ClientPhone">Номер телефона</label><br />
+        <input class="form-control" id="ww" type="text" asp-for="ClientPhone" />
+        <span class="form-text" asp-validation-for="ClientPhone" />
+    </div>
+
+    <div class="mb-3">
+        <label for="ww" class="form-label" asp-for="Count">Количество товара</label><br />
+        <input class="form-control" id="ww" type="number" asp-for="Count" />
+        <span class="form-text" asp-validation-for="Count" />
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-secondary">Купить</button>
+    </div>
+
+</form>
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -1,0 +1,181 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Admin";
+}
+<div class="admin-info col-12">
+    <p class="admin-name">
+        Admin: DickHole
+    </p>
+    <a asp-action="Logout" asp-controller="Admin" class="btn btn-dark btn-logout float-right">Разлогиниться</a>
+</div>
+
+<div class="col-12">
+    <!--------------Cars---------------------->
+    <h2>Корпуса</h2>
+    @for (int i = 0; i < ViewBag.BodyBoxes.Count; i++)
+    {
+        BodyBox box = ViewBag.BodyBoxes[i];
+        <div class="card col-12 filter-bb">
+            <div class="row">
+                <div class="col-6">
+                    <h5 class="card-title">@box.Name</h5>
+                    <a asp-action="DeleteBodyBox" asp-controller="Admin" asp-route-id="@box.Id" class="btn btn-outline-danger">Удалить</a>
+                    <a asp-action="EditBodyBox" asp-controller="Admin" asp-route-id="@box.Id" class="btn btn-outline-info">Редактировать</a>
+                </div>
+                <div class="col-6">
+                    <div class="card-body">
+                        <p class="card-text">
+                            Form Factor: @box.FormFactor <br />
+                            Color:  @box.Color <br />
+                            Manufactured by @box.Manufacturer<br />
+                            Price <span class="badge badge-secondary">@box.Cost р</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <a asp-action="AddBodyBox" asp-controller="Admin" class="btn btn-outline-secondary btn-lg btn-block" role="button" aria-pressed="true">Добавить новый корпус</a>
+    <hr />
+
+    <h2>Процессоры</h2>
+    @for (int i = 0; i < ViewBag.CPUs.Count; i++)
+    {
+        CPU cpu = ViewBag.CPUs[i];
+        <div class="card col-12 filter-cpu">
+            <div class="row">
+                <div class="col-6">
+                    <h5 class="card-title">@cpu.Name</h5>
+                    <a asp-action="DeleteCPU" asp-controller="Admin" asp-route-id="@cpu.Id" class="btn btn-outline-danger">Удалить</a>
+                    <a asp-action="EditCPU" asp-controller="Admin" asp-route-id="@cpu.Id" class="btn btn-outline-info">Редактировать</a>
+                </div>
+                <div class="col-6">
+                    <div class="card-body">
+
+                        <p class="card-text">
+                            Clock Speed: @cpu.ClockSpeed mg <br />
+                            Cores: @cpu.Cores <br />
+                            Socket:  @cpu.Socket <br />
+                            Manufactured by @cpu.Manufacturer<br />
+                            Price <span class="badge badge-secondary"> @cpu.Cost р</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <a asp-action="AddCPU" asp-controller="Admin" class="btn btn-outline-secondary btn-lg btn-block" role="button" aria-pressed="true">Добавить новый процессор</a>
+    <hr />
+
+    <h2>Видеокарты</h2>
+    @for (int i = 0; i < ViewBag.GPUs.Count; i++)
+    {
+        GPU gpu = ViewBag.GPUs[i];
+        <div class="card col-12 filter-gpu">
+            <div class="row">
+                <div class="col-6">
+                    <h5 class="card-title">@gpu.Name</h5>
+                    <a asp-action="DeleteGPU" asp-controller="Admin" asp-route-id="@gpu.Id" class="btn btn-outline-danger">Удалить</a>
+                    <a asp-action="EditGPU" asp-controller="Admin" asp-route-id="@gpu.Id" class="btn btn-outline-info">Редактировать</a>
+                </div>
+                <div class="col-6">
+                    <div class="card-body">
+                        <p class="card-text">
+                            Memory Amount:  @gpu.MemoryAmount Gb<br />
+                            ClockSpeed: @gpu.ClockSpeed <br />
+                            Bus:  @gpu.Bus bit <br />
+                            GPU Manufacturer by @gpu.ChipManufacturer <br />
+                            Manufactured by @gpu.Manufacturer<br />
+                            Price <span class="badge badge-secondary">@gpu.Cost р</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <a asp-action="AddGPU" asp-controller="Admin" class="btn btn-outline-secondary btn-lg btn-block" role="button" aria-pressed="true">Добавить новую видеокарту</a>
+    <hr />
+
+    <h2>Материнские платы</h2>
+    @for (int i = 0; i < ViewBag.Motherboards.Count; i++)
+    {
+        Motherboard mb = ViewBag.Motherboards[i];
+        <div class="card col-12 filter-mb">
+            <div class="row">
+                <div class="col-6">
+                    <h5 class="card-title">@mb.Name</h5>
+                    <a asp-action="DeleteMotherboard" asp-controller="Admin" asp-route-id="@mb.Id" class="btn btn-outline-danger">Удалить</a>
+                    <a asp-action="EditMotherboard" asp-controller="Admin" asp-route-id="@mb.Id" class="btn btn-outline-info">Редактировать</a>
+                </div>
+                <div class="col-6">
+                    <div class="card-body">
+                        <p class="card-text">
+                            Socket:  @mb.Socket <br />
+                            Form Factor: @mb.FormFactor <br />
+                            Chipset:  @mb.Chipset <br />
+                            Manufactured by @mb.Manufacturer<br />
+                            Price <span class="badge badge-secondary">@mb.Cost р</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <a asp-action="AddMotherboard" asp-controller="Admin" class="btn btn-outline-secondary btn-lg btn-block" role="button" aria-pressed="true">Добавить новую материнскую плату</a>
+    <hr />
+
+    <h2>Оперативная память</h2>
+    @for (int i = 0; i < ViewBag.RAMs.Count; i++)
+    {
+        RAM ram = ViewBag.RAMs[i];
+
+        <div class="card col-12">
+            <div class="row">
+                <div class="col-6">
+                    <h5 class="card-title">@ram.Name</h5>
+                    <a asp-action="DeleteRAM" asp-controller="Admin" asp-route-id="@ram.Id" class="btn btn-outline-danger">Удалить</a>
+                    <a asp-action="EditRAM" asp-controller="Admin" asp-route-id="@ram.Id" class="btn btn-outline-info">Редактировать</a>
+                </div>
+                <div class="col-6">
+                    <div class="card-body">
+                        <p class="card-text">
+                            Type: @ram.Type <br />
+                            Amount: @ram.Amount <br />
+                            Manufactured by @ram.Manufacturer<br />
+                            Price <span class="badge badge-secondary">@ram.Cost р</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <a asp-action="AddRAM" asp-controller="Admin" class="btn btn-outline-secondary btn-lg btn-block" role="button" aria-pressed="true">Добавить новую оперативку</a>
+    <hr />
+
+    <table class="table col-12">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Product Id</th>
+                <th scope="col">Client name</th>
+                <th scope="col">Adress</th>
+                <th scope="col">Client phone number</th>
+                <th scope="col">Count</th>
+                <th scope="col">Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Order order in ViewBag.Orders)
+            {
+                <tr>
+                    <th scope="row">@order.Id</th>
+                    <td>@order.ProductId</td>
+                    <td>@order.ClientName</td>
+                    <td>@order.Adress</td>
+                    <td>@order.ClientPhone</td>
+                    <td>@order.Count</td>
+                    <td>@order.Category</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

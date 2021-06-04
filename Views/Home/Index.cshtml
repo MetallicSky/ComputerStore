@@ -1,166 +1,506 @@
-﻿
+﻿@using CStore.Controllers
+@using CStore.Models
 @{
     ViewData["Title"] = "Главная страница";
 }
 
 <div class="col-4 store-sidebar">
     <h4>Подбор по параметрам</h4>
+    <hr />
+    <form method="get" >
+        <div class="mb-3">
+            <label for="inputCategory">Категория комплектующих</label>
+            <select name="category" id="inputCategory" class="form-control">
+                @if (ViewBag.Category == HomeController.Category.GPU)
+                {
+                    <option selected>Видеокарты</option>
+                    <option>Процессоры</option>
+                    <option>Материнские платы</option>
+                    <option>Оперативная память</option>
+                    <option>Корпуса</option>
+                }
+                else if (ViewBag.Category == HomeController.Category.CPU)
+                {
+                    <option>Видеокарты</option>
+                    <option selected>Процессоры</option>
+                    <option>Материнские платы</option>
+                    <option>Оперативная память</option>
+                    <option>Корпуса</option>
+                }
+                else if (ViewBag.Category == HomeController.Category.MotherBoard)
+                {
+                    <option>Видеокарты</option>
+                    <option>Процессоры</option>
+                    <option selected>Материнские платы</option>
+                    <option>Оперативная память</option>
+                    <option>Корпуса</option>
+                }
+                else if (ViewBag.Category == HomeController.Category.RAM)
+                {
+                    <option>Видеокарты</option>
+                    <option>Процессоры</option>
+                    <option>Материнские платы</option>
+                    <option selected>Оперативная память</option>
+                    <option>Корпуса</option>
+                }
+                else if (ViewBag.Category == HomeController.Category.BodyBox)
+                {
+                    <option>Видеокарты</option>
+                    <option>Процессоры</option>
+                    <option>Материнские платы</option>
+                    <option>Оперативная память</option>
+                    <option selected>Корпуса</option>
+                }
+            </select>
+        </div>
 
-    <form>
+        <label for="inputCategory">Цена</label>
         <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputEmail4">Эл. адрес</label>
-                <input type="email" class="form-control" id="inputEmail4">
+            <div class="col">
+                @if (ViewBag.MinCost != null)
+                {
+                    <input name="minCost" min="0" type="number" class="form-control" placeholder="От" value="@ViewBag.MinCost">
+                }
+                else
+                {
+                    <input name="minCost" min="0" type="number" class="form-control" placeholder="От">
+                }
             </div>
-            <div class="form-group col-md-6">
-                <label for="inputPassword4">Пароль</label>
-                <input type="password" class="form-control" id="inputPassword4">
+            <div class="col">
+                @if (ViewBag.MaxCost != null)
+                {
+                    <input name="maxCost" min="0" type="number" class="form-control" placeholder="До" value="@ViewBag.MaxCost">
+                }
+                else
+                {
+                    <input name="maxCost" min="0" type="number" class="form-control" placeholder="До">
+                }
             </div>
+            <hr />
         </div>
-        <div class="form-group">
-            <label for="inputAddress">Адрес</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="проспект, улица">
-        </div>
-        <div class="form-group">
-            <label for="inputAddress2">Адрес 2</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Квартира, студия или этаж">
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputГород">Город</label>
-                <input type="text" class="form-control" id="inputГород">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="inputState">Область</label>
-                <select id="inputState" class="form-control">
-                    <option selected>Выбрать...</option>
-                    <option>...</option>
+        @if (ViewBag.Category == HomeController.Category.BodyBox)
+        {
+            <div class="mb-3">
+                <label for="inputFormFactor">Форм фактор</label>
+                <select name="bbFormFactor" id="inputFormFactor" class="form-control">
+
+                    @if (ViewBag.BodyBoxFilter == 0)
+                    {
+                        <option selected>Выбрать все</option>
+                    }
+                    else
+                    {
+                        <option>Выбрать все</option>
+                    }
+
+                    @if (ViewBag.BodyBoxFilter == 1)
+                    {
+                        <option selected>@BodyBox.BBFormFactor.Desktop</option>
+                    }
+                    else
+                    {
+                        <option>@BodyBox.BBFormFactor.Desktop</option>
+                    }
+
+                    @if (ViewBag.BodyBoxFilter == 2)
+                    {
+                        <option selected>@BodyBox.BBFormFactor.CubeCase</option>
+                    }
+                    else
+                    {
+                        <option>@BodyBox.BBFormFactor.CubeCase</option>
+                    }
+
+                    @if (ViewBag.BodyBoxFilter == 3)
+                    {
+                        <option selected>@BodyBox.BBFormFactor.FullTower</option>
+                    }
+                    else
+                    {
+                        <option>@BodyBox.BBFormFactor.FullTower</option>
+                    }
+
+                    @if (ViewBag.BodyBoxFilter == 4)
+                    {
+                        <option selected>@BodyBox.BBFormFactor.MidiTower</option>
+                    }
+                    else
+                    {
+                        <option>@BodyBox.BBFormFactor.MidiTower</option>
+                    }
+
+                    @if (ViewBag.BodyBoxFilter == 5)
+                    {
+                        <option selected>@BodyBox.BBFormFactor.MiniTower</option>
+                    }
+                    else
+                    {
+                        <option>@BodyBox.BBFormFactor.MiniTower</option>
+                    }
+
+                    @if (ViewBag.BodyBoxFilter == 6)
+                    {
+                        <option selected>@BodyBox.BBFormFactor.UltraTower</option>
+                    }
+                    else
+                    {
+                        <option>@BodyBox.BBFormFactor.UltraTower</option>
+                    }
                 </select>
             </div>
-            <div class="form-group col-md-2">
-                <label for="inputZip">Индекс</label>
-                <input type="text" class="form-control" id="inputZip">
+        }
+        else if (ViewBag.Category == HomeController.Category.CPU)
+        {
+            <div class="mb-3">
+                <label for="inputMonufacturer">Производитель</label>
+                <select name="monufacturer" id="inputMonufacturer" class="form-control">
+                    @if (ViewBag.СPUFilter == 0)
+                    {
+                        <option selected>Выбрать все</option>
+                    }
+                    else
+                    {
+                        <option>Выбрать все</option>
+                    }
+
+                    @if (ViewBag.СPUFilter == 1)
+                    {
+                        <option selected>@CPU.CPUChipManufacturer.AMD</option>
+                    }
+                    else
+                    {
+                        <option>@CPU.CPUChipManufacturer.AMD</option>
+                    }
+
+                    @if (ViewBag.СPUFilter == 2)
+                    {
+                        <option selected>@CPU.CPUChipManufacturer.Intel</option>
+                    }
+                    else
+                    {
+                        <option>@CPU.CPUChipManufacturer.Intel</option>
+                    }
+                </select>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                    Проверить меня
-                </label>
+        }
+        else if (ViewBag.Category == HomeController.Category.GPU)
+        {
+            <div class="mb-3">
+                <label for="inputMonufacturer">Производитель чипа</label>
+                <select name="monufacturer" id="inputMonufacturer" class="form-control">
+                    @if (ViewBag.GPUFilter == 0)
+                    {
+                        <option selected>Выбрать все</option>
+                    }
+                    else
+                    {
+                        <option>Выбрать все</option>
+                    }
+
+                    @if (ViewBag.GPUFilter == 1)
+                    {
+                        <option selected>@GPU.GPUChipManufacturer.AMD</option>
+                    }
+                    else
+                    {
+                        <option>@GPU.GPUChipManufacturer.AMD</option>
+                    }
+
+                    @if (ViewBag.GPUFilter == 2)
+                    {
+                        <option selected>@GPU.GPUChipManufacturer.NVIDIA</option>
+                    }
+                    else
+                    {
+                        <option>@GPU.GPUChipManufacturer.NVIDIA</option>
+                    }
+                </select>
             </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Войти в систему</button>
+        }
+        else if (ViewBag.Category == HomeController.Category.MotherBoard)
+        {
+            <div class="mb-3">
+                <label for="inputFormFactor">Форм фактор</label>
+                <select name="formFactor" id="inputFormFactor" class="form-control">
+                    @if (ViewBag.MotherBoardFilter == 0)
+                    {
+                        <option selected>Выбрать все</option>
+                    }
+                    else
+                    {
+                        <option>Выбрать все</option>
+                    }
+
+                    @if (ViewBag.MotherBoardFilter == 1)
+                    {
+                        <option selected>@Motherboard.MBFormFactor.ATX</option>
+                    }
+                    else
+                    {
+                        <option>@Motherboard.MBFormFactor.ATX</option>
+                    }
+
+                    @if (ViewBag.MotherBoardFilter == 2)
+                    {
+                        <option selected>@Motherboard.MBFormFactor.mATX</option>
+                    }
+                    else
+                    {
+                        <option>@Motherboard.MBFormFactor.mATX</option>
+                    }
+
+                    @if (ViewBag.MotherBoardFilter == 3)
+                    {
+                        <option selected>@Motherboard.MBFormFactor.miniATX</option>
+                    }
+                    else
+                    {
+                        <option>@Motherboard.MBFormFactor.miniATX</option>
+                    }
+                </select>
+            </div>
+        }
+        else if (ViewBag.Category == HomeController.Category.RAM)
+        {
+            <div class="mb-3">
+                <label for="inputAmount">Объем памяти</label>
+                <select name="amount" id="inputAmount" class="form-control">
+
+                    @if (ViewBag.RAMFilter == 0)
+                    {
+                        <option selected>Выбрать все</option>
+                    }
+                    else
+                    {
+                        <option>Выбрать все</option>
+                    }
+
+                    @if (ViewBag.RAMFilter == 1)
+                    {
+                        <option selected>@RAM.AMOUNT1GB</option>
+                    }
+                    else
+                    {
+                        <option>@RAM.AMOUNT1GB</option>
+                    }
+
+                    @if (ViewBag.RAMFilter == 2)
+                    {
+                        <option selected>@RAM.AMOUNT2GB</option>
+                    }
+                    else
+                    {
+                        <option>@RAM.AMOUNT2GB</option>
+                    }
+
+                    @if (ViewBag.RAMFilter == 3)
+                    {
+                        <option selected>@RAM.AMOUNT4GB</option>
+                    }
+                    else
+                    {
+                        <option>@RAM.AMOUNT4GB</option>
+                    }
+
+                    @if (ViewBag.RAMFilter == 4)
+                    {
+                        <option selected>@RAM.AMOUNT8GB</option>
+                    }
+                    else
+                    {
+                        <option>@RAM.AMOUNT8GB</option>
+                    }
+
+                    @if (ViewBag.RAMFilter == 5)
+                    {
+                        <option selected>@RAM.AMOUNT16GB</option>
+                    }
+                    else
+                    {
+                        <option>@RAM.AMOUNT16GB</option>
+                    }
+
+                    @if (ViewBag.RAMFilter == 6)
+                    {
+                        <option selected>@RAM.AMOUNT32GB</option>
+                    }
+                    else
+                    {
+                        <option>@RAM.AMOUNT32GB</option>
+                    }
+
+                    @if (ViewBag.RAMFilter == 7)
+                    {
+                        <option selected>@RAM.AMOUNT64GB</option>
+                    }
+                    else
+                    {
+                        <option>@RAM.AMOUNT64GB</option>
+                    }
+                </select>
+            </div>
+        }
+        <button type="submit" class="btn btn-outline-secondary btn-filter btn-block">Отфильтровать</button>
     </form>
 </div>
 
-<div class="col-8 store-content">
-    <div class="card col-12">
-        <div class="row">
-            <div class="col-4">
-                <img src="~/img/ram.png" class="product-img" alt="...">
-            </div>
-            <div class="col-8">
-                <div class="card-body">
-                    <h5 class="card-title">RAM name</h5>
-                    <p class="card-text">
-                        Type: DDR4 <br />
-                        Amount: 8GB <br />
-                        Manufactured by Razor<br />
-                        Price <span class="badge badge-secondary">7000 р</span>
+<div class="col-8 store-content filter-ram">
 
-                    </p>
-                    <a href="#" class="btn btn-outline-secondary">Заказать</a>
+    @if (ViewBag.Category == HomeController.Category.BodyBox)
+    {
+        for (int i = 0; i < ViewBag.BodyBoxes.Count; i++) 
+        {
+            BodyBox box = ViewBag.BodyBoxes[i];
+            <div class="card col-12 filter-bb">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="~/img/bb.png" class="product-img" alt="...">
+                    </div>
+                    <div class="col-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@box.Name</h5>
+                            <p class="card-text">
+                                Form Factor: @box.FormFactor <br />
+                                Color:  @box.Color <br />
+                                Manufactured by @box.Manufacturer<br />
+                                Price <span class="badge badge-secondary">@box.Cost р</span>
+                            </p>
+                            <a asp-action="Buy" asp-controller="Home" asp-route-category="ViewBag.Category" asp-route-id="@box.Id" class="btn btn-outline-secondary">Заказать</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="card col-12">
-        <div class="row">
-            <div class="col-4">
-                <img src="~/img/cpu.png" class="product-img" alt="...">
-            </div>
-            <div class="col-8">
-                <div class="card-body">
-                    <h5 class="card-title">fx-8350</h5>
-                    <p class="card-text">
-                        Clock Speed: 1500 mg <br />
-                        Cores: 4 <br />
-                        Socket:  AM3+ <br />
-                        Manufactured by AMD<br />
-                        Price <span class="badge badge-secondary"> 9000 р</span>
-                    </p>
-                    <a href="#" class="btn btn-outline-secondary">Заказать</a>
+        }
+    }
+    else if (ViewBag.Category == HomeController.Category.CPU)
+    {
+        for (int i = 0; i < ViewBag.CPUs.Count; i++)
+        {
+            CPU cpu = ViewBag.CPUs[i];
+            <div class="card col-12 filter-cpu">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="~/img/cpu.png" class="product-img" alt="...">
+                    </div>
+                    <div class="col-8">
+                        <div class="card-body">
+                            <h5 class="card-title">cpu.Name</h5>
+                            <p class="card-text">
+                                Clock Speed: @cpu.ClockSpeed mg <br />
+                                Cores: @cpu.Cores <br />
+                                Socket:  @cpu.Socket <br />
+                                Manufactured by @cpu.Manufacturer<br />
+                                Price <span class="badge badge-secondary"> @cpu.Cost р</span>
+                            </p>
+                            <a asp-action="Buy" asp-controller="Home" asp-route-category="ViewBag.Category" asp-route-id="@cpu.Id" class="btn btn-outline-secondary">Заказать</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        }
+    }
+    else if (ViewBag.Category == HomeController.Category.GPU)
+    {
+        for (int i = 0; i < ViewBag.GPUs.Count; i++)
+        {
+            GPU gpu = ViewBag.GPUs[i];
+            <div class="card col-12 filter-gpu">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="~/img/gpu.png" class="product-img" alt="...">
+                    </div>
+                    <div class="col-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@gpu.Name</h5>
+                            <p class="card-text">
+                                Memory Amount:  @gpu.MemoryAmount <br />
+                                ClockSpeed: @gpu.ClockSpeed <br />
+                                Bus:  @gpu.Bus bit <br />
+                                GPU Manufacturer by @gpu.ChipManufacturer <br />
+                                Manufactured by @gpu.Manufacturer<br />
 
-    <div class="card col-12">
-        <div class="row">
-            <div class="col-4">
-                <img src="~/img/bb.png" class="product-img" alt="...">
-            </div>
-            <div class="col-8">
-                <div class="card-body">
-                    <h5 class="card-title">Z11+</h5>
-                    <p class="card-text">
-                        Clock Speed: 1500 mg <br />
-                        Form Factor: MidiTower <br />
-                        Color:  Black <br />
-                        Manufactured by Zulman<br />
-                        Price <span class="badge badge-secondary">4500 р</span>
-                    </p>
-                    <a href="#" class="btn btn-outline-secondary">Заказать</a>
+                                Price <span class="badge badge-secondary">@gpu.Cost р</span>
+                            </p>
+                            <a asp-action="Buy" asp-controller="Home" asp-route-category="ViewBag.Category" asp-route-id="@gpu.Id" class="btn btn-outline-secondary">Заказать</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        }
 
-    <div class="card col-12">
-        <div class="row">
-            <div class="col-4">
-                <img src="~/img/mb.png" class="product-img" alt="...">
-            </div>
-            <div class="col-8">
-                <div class="card-body">
-                    <h5 class="card-title">kr23pty</h5>
-                    <p class="card-text">
-                        Socket:  AM3+ <br />
-                        Form Factor: ATX <br />
-                        Chipset:  975 <br />
-                        Manufactured by Asus<br />
-                        Price <span class="badge badge-secondary">7500 р</span>
-                    </p>
-                    <a href="#" class="btn btn-outline-secondary">Заказать</a>
+    }
+    else if (ViewBag.Category == HomeController.Category.MotherBoard)
+    {
+        for (int i = 0; i < ViewBag.Motherboards.Count; i++)
+        {
+            Motherboard mb = ViewBag.Motherboards[i];
+            <div class="card col-12 filter-mb">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="~/img/mb.png" class="product-img" alt="...">
+                    </div>
+                    <div class="col-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@mb.Name</h5>
+                            <p class="card-text">
+                                Socket:  @mb.Socket <br />
+                                Form Factor: @mb.FormFactor <br />
+                                Chipset:  @mb.Chipset <br />
+                                Manufactured by @mb.Manufacturer<br />
+                                Price <span class="badge badge-secondary">@mb.Cost р</span>
+                            </p>
+                            <a asp-action="Buy" asp-controller="Home" asp-route-category="ViewBag.Category" asp-route-id="@mb.Id" class="btn btn-outline-secondary">Заказать</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="card col-12">
-        <div class="row">
-            <div class="col-4">
-                <img src="~/img/gpu.png" class="product-img" alt="...">
-            </div>
-            <div class="col-8">
-                <div class="card-body">
-                    <h5 class="card-title">GTX 780</h5>
-                    <p class="card-text">
-                        Memory Amount:  4 GB <br />
-                        ClockSpeed: 925 <br />
-                        Bus:  128 bit <br />
-                        GPU Manufacturer by NVIDIA <br />
-                        Manufactured by Asus<br />
-
-                        Price <span class="badge badge-secondary">12500 р</span>
-                    </p>
-                    <a href="#" class="btn btn-outline-secondary">Заказать</a>
+        }
+    }
+    else if (ViewBag.Category == HomeController.Category.RAM)
+    {
+        for (int i = 0; i < ViewBag.RAMs.Count; i++)
+        {
+            RAM ram = ViewBag.RAMs[i];
+            <div class="card col-12">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="~/img/ram.png" class="product-img" alt="...">
+                    </div>
+                    <div class="col-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@ram.Name</h5>
+                            <p class="card-text">
+                                Type: @ram.Type <br />
+                                Amount: @ram.Amount <br />
+                                Manufactured by @ram.Manufacturer<br />
+                                Price <span class="badge badge-secondary">@ram.Cost р</span>
+                            </p>
+                            <a asp-action="Buy" asp-controller="Home" asp-route-category="ViewBag.Category" asp-route-id="@ram.Id" class="btn btn-outline-secondary">Заказать</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 </div>
+
+
+
+@section scripts{
+    <script src="~/js/Filter.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

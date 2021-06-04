@@ -1,0 +1,56 @@
+﻿@model CStore.Models.BodyBox
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Add BodyBox";
+}
+
+<form class="col-8" asp-action="AddBodyBox" asp-controller="Admin" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div class="mb-3">
+        <label for="ee" class="form-label" asp-for="Name">Наименование</label><br />
+        <input class="form-control" id="ee" type="text" asp-for="Name"  />
+        <span class="form-text" asp-validation-for="Name" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FormFactor" for="ee">Форм фактор</label>
+        <select name="brand" asp-for="FormFactor" id="ee" class="form-control">
+            <option>@BodyBox.BBFormFactor.CubeCase</option>
+            <option>@BodyBox.BBFormFactor.Desktop</option>
+            <option>@BodyBox.BBFormFactor.FullTower</option>
+            <option>@BodyBox.BBFormFactor.MidiTower</option>
+            <option>@BodyBox.BBFormFactor.MiniTower</option>
+            <option>@BodyBox.BBFormFactor.UltraTower</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="ww" asp-for="Color">Цвет</label>
+        <select name="carModel"  asp-for="Color" id="ww" class="form-control">
+            <option>@BodyBox.BBColor.White</option>
+            <option>@BodyBox.BBColor.Black</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="ww" class="form-label" asp-for="Cost">Стоимость</label><br />
+        <input class="form-control" id="ww" type="number" asp-for="Cost" />  
+        <span class="form-text" asp-validation-for="Cost" />
+    </div>
+    <div class="mb-3">
+        <label for="ww" class="form-label" asp-for="Manufacturer">Производитель</label><br />
+        <input class="form-control" id="ww" type="text" asp-for="Manufacturer" />
+        <span class="form-text" asp-validation-for="Manufacturer" />
+    </div>
+
+
+    <div>
+        <button type="submit" class="btn btn-secondary">Добавить</button>
+    </div>
+
+</form>
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

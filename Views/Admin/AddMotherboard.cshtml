@@ -1,0 +1,62 @@
+﻿@model CStore.Models.Motherboard
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Add Motherboard";
+}
+
+<form class="col-8" asp-action="AddMotherboard" asp-controller="Admin" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="Name">Наименование</label><br />
+        <input class="form-control" name="name" id="qw" type="text" asp-for="Name" />
+        <span class="form-text" asp-validation-for="Name" />
+    </div>
+
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="Socket">Сокет</label><br />
+        <input class="form-control" name="Socket" id="qw" type="text" asp-for="Socket" />
+        <span class="form-text" asp-validation-for="Socket" />
+    </div>
+
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="Chipset">Чипсет</label><br />
+        <input class="form-control" name="Chipset" id="qw" type="text" asp-for="Chipset" />
+        <span class="form-text" asp-validation-for="Chipset" />
+    </div>
+
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="Cost">Стоимость</label><br />
+        <input class="form-control" id="qw" type="number" asp-for="Cost" />
+        <span class="form-text" asp-validation-for="Cost" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FormFactor" class="form-label" for="qw">Форм фактор</label>
+        <select name="type" asp-for="FormFactor" id="qw" class="form-control">
+            <option>@Motherboard.MBFormFactor.ATX</option>
+            <option>@Motherboard.MBFormFactor.mATX</option>
+            <option>@Motherboard.MBFormFactor.miniATX</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="Manufacturer">Производитель</label><br />
+        <input class="form-control" name="manufacturer" id="qw" type="text" asp-for="Manufacturer" />
+        <span class="form-text" asp-validation-for="Manufacturer" />
+    </div>
+
+
+    <div>
+        <button type="submit" class="btn btn-secondary">Добавить</button>
+    </div>
+
+</form>
+
+
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

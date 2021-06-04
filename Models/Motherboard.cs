@@ -9,6 +9,7 @@ namespace CStore.Models
     {
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
+        public virtual int Cost { get; set; }
         public virtual string Socket { get; set; }
         public virtual string Chipset { get; set; }
         public virtual  MBFormFactor FormFactor { get; set; }

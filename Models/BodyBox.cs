@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CStore.Models
 {
-    public class BodyDox
+    public class BodyBox
     {
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }

@@ -1,0 +1,76 @@
+﻿@model CStore.Models.GPU
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Edit GPU";
+}
+
+<form class="col-8" asp-action="EditGPU" asp-controller="Admin" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="Name">Наименование</label><br />
+        <input name="Name" class="form-control" id="qw" type="text" asp-for="Name" />
+        <span class="form-text" asp-validation-for="Name" />
+    </div>
+
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="MemoryAmount">Объем памяти</label><br />
+        <input class="form-control" name="memoryAmount" id="qw" type="number" asp-for="MemoryAmount" />
+        <span class="form-text" asp-validation-for="MemoryAmount" />
+    </div>
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="ClockSpeed">Частота чипа</label><br />
+        <input class="form-control" name="clockSpeed" id="qw" type="number" asp-for="ClockSpeed" />
+        <span class="form-text" asp-validation-for="ClockSpeed" />
+    </div>
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="Bus">Разрядность шины</label><br />
+        <input class="form-control" name="bus" id="qw" type="number" asp-for="Bus" />
+        <span class="form-text" asp-validation-for="Bus" />
+    </div>
+
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="Cost">Стоимость</label><br />
+        <input class="form-control" name="cost" id="qw" type="number" asp-for="Cost" />
+        <span class="form-text" asp-validation-for="Cost" />
+    </div>
+    <div class="mb-3">
+        <label for="qw" class="form-label" asp-for="Manufacturer">Производитель</label><br />
+        <input class="form-control" id="qw" name="manufacturer" type="text" asp-for="Manufacturer" />
+        <span class="form-text" asp-validation-for="Manufacturer" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="ChipManufacturer" class="form-label" for="qw">Производитель чипа</label>
+        <select name="chipManufacturer" asp-for="ChipManufacturer" id="qw" class="form-control">
+            <option>@GPU.GPUChipManufacturer.AMD</option>
+            <option>@GPU.GPUChipManufacturer.NVIDIA</option>
+        </select>
+    </div>
+    <input asp-for="Id" type="hidden" />
+    <div>
+        <button type="submit" class="btn btn-secondary">Изменить</button>
+
+    </div>
+
+</form>
+
+
+
+    <div class="col-4">
+        <h4>До редактирования</h4>
+        <h5 class="card-title">Name: @Model.Name</h5>
+        <p class="card-text">
+            Memory Amount:  @Model.MemoryAmount Gb<br />
+            ClockSpeed: @Model.ClockSpeed <br />
+            Bus:  @Model.Bus bit <br />
+            Manufactured by @Model.Manufacturer<br />
+            GPU Manufacturer by @Model.ChipManufacturer <br />
+            Price <span class="badge badge-secondary">@Model.Cost р</span>
+        </p>
+    </div>
+
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
